@@ -11,5 +11,9 @@
   "license": "ISC",
   "dependencies": {
     "readline-sync": "^1.4.10"
+  },
+
+  "nodemonConfig": {
+    "ignore": ["node_modules/*"]
   }
 }
