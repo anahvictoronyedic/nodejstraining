@@ -5,33 +5,42 @@ module.exports = function(){
 
     const app = express();
 
-    app.use(function(req,res,next){
+    const useNewCode= true;
 
-        console.log('first middleware');
+    if( useNewCode ){
+        const calculator = require('./controllers/calculator');
+        app.use('/calculator',calculator);
+    }
+    else{
 
-        if( req.url == '/' ){
-            res.send('Hello');
-            return;
-        }
+        app.use(function(req,res,next){
 
-        next();
-    });
+            console.log('first middleware');
 
-    app.use(function(req,res,next){
+            if( req.url == '/' ){
+                res.send('Hello');
+                return;
+            }
 
-        console.log('second middleware');
+            next();
+        });
 
-        if( req.url == '/second' ){
-            res.send('Second Page');
-            return;
-        }
+        app.use(function(req,res,next){
 
-        next();
-    });
+            console.log('second middleware');
 
-    app.use(function(req,res,next){
-        res.send('Default Page');
-    });
+            if( req.url == '/second' ){
+                res.send('Second Page');
+                return;
+            }
+
+            next();
+        });
+
+        app.use(function(req,res,next){
+            res.send('Default Page');
+        });
+    }
 
     app.listen(3000);
 };
