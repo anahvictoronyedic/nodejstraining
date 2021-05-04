@@ -10,10 +10,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.17.1",
     "readline-sync": "^1.4.10"
   },
-
   "nodemonConfig": {
-    "ignore": ["node_modules/*"]
+    "ignore": [
+      "node_modules/*"
+    ]
   }
 }
